@@ -1,0 +1,15 @@
+{
+	"pieces":
+		[
+			{"animations": {"init_2": [90, 179], "init_1": [0, 89]}, "frames": {"regY": 2, "regX": 2, "count": 180, "width": 65, "height": 65}, "images": ["img/lineskin.png"]},
+			{"frames": {"regX": 0, "count": 180, "width": 41, "regY": 0, "height": 40}, "animations": {"init_1": [0, 89], "init_2": [90, 179]}, "images": ["img/curveSkin.png"]},
+			{
+				"name":"two-curves",
+		    "animations": {"init2_1": [188, 277], "init1_1": [0, 91], "init1_2": [92, 187], "init2_2": [278, 368]},
+		    "frames": {"regY": 0, "regX": 0, "count": 369, "width": 42, "height": 42},
+		    "images": ["img/twoCurvesSkin.png"]
+			},
+			{"name":"start", "animations": {"init": [1, 92], "all": [0, 0]}, "frames": {"regY": 0, "regX": 0, "count": 93, "width": 41, "height": 41}, "images": ["img/startSkin.png"]},
+			{"name":"finish", "animations": {"init": [1, 92], "all": [0, 0]}, "frames": {"regY": 0, "regX": 0, "count": 93, "width": 41, "height": 42}, "images": ["img/finishSkin.png"]}
+		]
+}

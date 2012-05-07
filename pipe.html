@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Pipe Game using EaselJS</title>
+
+<link href="styles/styles.css" rel="stylesheet" type="text/css" />
+<script src="js/Prototype.js"></script>
+
+
+<!-- Import Signals -->
+<script type="text/javascript" src="js/signals/signals.js"></script>
+<script type="text/javascript" src="js/signals/Signal.js"></script>
+<script type="text/javascript" src="js/signals/SignalBinding.js"></script>
+<!-- Import Signals Framework -->
+
+<!-- Import EaselJS Framework -->
+<script src="js/easeljs-0.4.2.min.js"></script>
+<script src="js/tweenjs-0.2.0.min.js"></script>
+<script src="js/movieclip-0.4.1.min.js"></script>
+<!-- End EaselJS Imports -->
+
+<script src="js/ui/UIQuadrant.js"></script>
+<script src="js/ui/UIPiece.js"></script>
+<script src="js/core/quadrant/Quadrant.js"></script>
+<script src="js/core/quadrant/QuadrantManager.js"></script>
+<script src="js/core/quadrant/QuadrantStage.js"></script>
+<script src="js/core/piece/Piece.js"></script>
+<script src="js/core/piece/PieceSide.js"></script>
+<script src="js/core/piece/PieceType.js"></script>
+<script src="js/core/piece/PieceFactory.js"></script>
+<script src="js/core/CoreGame.js"></script>
+<script src="js/core/CoreGameManager.js"></script>
+<script src="js/view/PieceView.js"></script>
+<script src="js/Pipe.js"></script>
+
+<script>
+
+var canvas;
+var stage;
+var img;
+
+function init() {
+	canvas = document.getElementById("testCanvas");
+	stage = new Stage(canvas);
+
+	var imagesLoaded = 0;
+
+	new Ajax.Request('json/skin2.json', {
+	  method:'get',
+	  requestHeaders: {Accept: 'application/json'},
+	  onSuccess: function(transport){
+	    var json = transport.responseText.evalJSON(true);
+
+			for(var i = 0; i < json["pieces"].length; i++)
+			{
+				img = new Image();
+				img.onload = handleImageLoad;
+				img.src = json["pieces"][i]["images"][0];
+				function handleImageLoad(event) {
+					if(imagesLoaded == json["pieces"].length-1)
+					{						
+						//Coregame
+						var coreGame = new CoreGame(stage,500, 200, json);
+						var coreGameManager = new CoreGameManager(coreGame);
+						coreGameManager.initGame();
+						Ticker.setFPS(30);
+						Ticker.addListener(stage);
+					}
+					imagesLoaded++;
+				}
+			}	
+		}
+	});
+}
+
+</script>
+</head>
+
+<body onload="init();">
+<div class="description">
+	Use <strong>R</strong> for rotate the piece, and see the console for see the events.Refresh to restart.
+	</div>
+	<div class="canvasHolder">
+		<canvas id="testCanvas" width="980" height="580"></canvas>
+	</div>
+</body>
+</html>

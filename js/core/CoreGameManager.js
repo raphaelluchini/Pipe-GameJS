@@ -45,12 +45,8 @@ var CoreGameManager = Class.create({
 	 * Inities varifications of pieces
 	 */
   initVerification: function(){
-  	
-  	/*timer = new Timer(pieaceTime);
-		timer.addEventListener(TimerEvent.TIMER, onTimer);*/
 		this.currentQuad = this.quadrantManager.getQuadrant(this.initQuadrant[0], this.initQuadrant[1]);
 		this.currentQuad.piece.executePiece(-1);
-		//timer.start();
 		var _this = this;
 		this.timer = new PeriodicalExecuter(function(pe){
 			if (_this.currentQuad.piece.getPieceType() == new PieceType().START)

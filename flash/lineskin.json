@@ -1,1 +1,1 @@
-{"animations": {"init_2": [90, 179], "init_1": [0, 89]}, "frames": {"regY": 0, "regX": 0, "count": 180, "width": 41, "height": 41}, "images": ["lineskin.png"]}
+{"images": ["lineskin.png"], "frames": {"regY": 0, "height": 41, "regX": 0, "width": 41, "count": 181}, "animations": {"all": [0, 0], "init_2": [1, 89], "init_1": [90, 180]}}

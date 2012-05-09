@@ -1,5 +1,1 @@
-{
-    "animations": {"init2_1": [188, 277], "init1_1": [0, 91], "init1_2": [92, 187], "init2_2": [278, 368]},
-    "frames": {"regY": 0, "regX": 0, "count": 369, "width": 42, "height": 42},
-    "images": ["twoCurvesSkin.png"]
-}
+{"images": ["twoCurvesSkin.png"], "frames": {"regY": 0, "height": 41, "regX": 0, "width": 41, "count": 369}, "animations": {"init2_2": [278, 368], "init2_1": [188, 277], "init1_1": [0, 91], "init1_2": [92, 187]}}

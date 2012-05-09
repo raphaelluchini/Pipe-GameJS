@@ -79,19 +79,35 @@ var UIPiece = Class.create({
 	 * @param	event
 	 */
 	onMouseWheel: function(side) {
-		/*if (!this.pieceData.isNew)
-		{*/
 			if (side > 0)
-			{
-				this.skin.rotation -= 90;
 				this.pieceData.rotateLeft();
-			}
 			else
-			{
-				this.skin.rotation += 90;
 				this.pieceData.rotateRight();
+
+			//Pixel Rotation Fix
+			if(this.pieceData.rotationNumber == 3)
+			{
+				this.skin.regX = 21;
+				this.skin.regY = 20;
 			}
-		//}
+
+			if(this.pieceData.rotationNumber == 2)
+			{
+				this.skin.regX = 21;
+				this.skin.regY = 21;
+			}
+
+			if(this.pieceData.rotationNumber == 1)
+			{
+				this.skin.regX = 20;
+				this.skin.regY = 21;
+			}
+			if(this.pieceData.rotationNumber == 0)
+			{
+				this.skin.regX = 20;
+				this.skin.regY = 20;
+			}
+			this.skin.rotation = this.pieceData.rotationNumber * 90;
   },
   /**
 	 * Get type of piece ( PieceType.as )

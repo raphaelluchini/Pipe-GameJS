@@ -1,1 +1,1 @@
-{"frames": {"regX": 0, "count": 180, "width": 41, "regY": 0, "height": 40}, "animations": {"init_1": [0, 89], "init_2": [90, 179]}, "images": ["curveSkin.png"]}
+{"images": ["curveSkin.png"], "frames": {"regY": 0, "height": 41, "regX": 0, "width": 41, "count": 180}, "animations": {"init_1": [0, 89], "init_2": [90, 179]}}

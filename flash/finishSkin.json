@@ -1,1 +1,1 @@
-{"animations": {"init": [1, 92], "all": [0, 0]}, "frames": {"regY": 0, "regX": 0, "count": 93, "width": 41, "height": 42}, "images": ["finishSkin.png"]}
+{"images": ["finishSkin.png"], "frames": {"regY": 0, "height": 41, "regX": 0, "width": 41, "count": 93}, "animations": {"all": [0, 0], "init": [1, 92]}}

@@ -1,10 +1,15 @@
 var QuadrantStage = Class.create({
-  initialize: function(view) {
-   	this.quadrantManager;
+  initialize: function(view, map) {
+   		this.quadrantManager;
 		this.created;
 		this.view = view;
+		this.map = map;
 		this.widthQuad;
 		this.heightQuad;
+		/**
+		 * Reference of initial quadrant for initial piece.
+		 */
+		this.initQuadrant;
   },
 	/**
 	 * Create the visual stageQuadrant
@@ -15,12 +20,12 @@ var QuadrantStage = Class.create({
 	 * @param	widthQuad height of quadrants by Y
 	 * @param	heightQuad width of quadrants by Y
 	 */
-	createStageQuadrant: function(xRef, yRef, widthQuad, heightQuad) 
+	createStageQuadrant: function(widthQuad, heightQuad) 
 	{
 		this.widthQuad = widthQuad;
 		this.heightQuad = heightQuad;
 		this.quadrantManager = new QuadrantManager();
-		var arrManager = this.quadrantManager.newGame(xRef, yRef, widthQuad, heightQuad);
+		var arrManager = this.quadrantManager.newGame(this.map, widthQuad, heightQuad);
 		
 		for (var i = 0; i < arrManager.length; i++) 
 		{

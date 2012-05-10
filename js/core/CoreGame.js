@@ -2,9 +2,9 @@ var CoreGame = Class.create(QuadrantStage,{
 	/**
 	 * The constructor method needs the piece x and y for know where the pieces is added
 	 */
-  initialize: function($super, view, pieceX, pieceY, skinJson) {
-  	$super(view);
-   	this.piece;
+  initialize: function($super, view, map, pieceX, pieceY, skinJson) {
+  		$super(view, map);
+   		this.piece;
 		this.pieceX = pieceX;
 		this.pieceY = pieceY;
 		this.cacheX;
@@ -89,14 +89,42 @@ var CoreGame = Class.create(QuadrantStage,{
 		this.view.addChild(this.piece.skin);
 		return this.piece
   },
+  createDefaultPieces: function(){
+  	for (var i = 0; i < this.map.length; i++) 
+	{
+		for (var j = 0; j < this.map[i].length; j++) 
+		{
+			var pieceType = this.map[i][j];
+			switch(pieceType)
+			{
+				case new PieceType().START:
+				{
+					this.initQuadrant = [j, i]
+					this._createInitPiece(j, i);
+					break;
+				}
+				case new PieceType().FINISH:
+				{
+					this._createFinishPiece(j, i);
+					break;
+				}
+				case new PieceType().BLOCK:
+				{
+					this._createBlockPiece(j, i);
+					break;
+				}	
+			}			
+		}
+	}
+  },
   /**
 	 * Create the initial piece, where the game starts
 	 * @param	xRef
 	 * @param	yRef
 	 * @return the same piece object
 	 */
-  createInitPiece: function(xRef, yRef){
-  	var initPiece = new PieceFactory().createInitPiece(this.skinJson);
+  _createInitPiece: function(xRef, yRef){
+  		var initPiece = new PieceFactory().createInitPiece(this.skinJson);
 		this.view.addChild(initPiece.skin);
 		var quad = this.quadrantManager.getQuadrant(xRef, yRef);
 		this.addToQuadrant(initPiece, quad);
@@ -108,8 +136,15 @@ var CoreGame = Class.create(QuadrantStage,{
 	 * @param	yRef
 	 * @return the same piece object
 	 */
-  createFinishPiece: function(xRef, yRef){
-  	var initPiece = new PieceFactory().createFinishPiece(this.skinJson);
+  _createFinishPiece: function(xRef, yRef){
+  		var initPiece = new PieceFactory().createFinishPiece(this.skinJson);
+		this.view.addChild(initPiece.skin);
+		var quad = this.quadrantManager.getQuadrant(xRef, yRef);
+		this.addToQuadrant(initPiece, quad);
+		return initPiece
+  },
+  _createBlockPiece: function(xRef, yRef){
+  		var initPiece = new PieceFactory().createBlockPiece(this.skinJson);
 		this.view.addChild(initPiece.skin);
 		var quad = this.quadrantManager.getQuadrant(xRef, yRef);
 		this.addToQuadrant(initPiece, quad);

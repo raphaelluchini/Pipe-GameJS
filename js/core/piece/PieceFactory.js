@@ -1,6 +1,6 @@
 var PieceFactory = Class.create({
   initialize: function() {
-   	this.ONE_LINE_NAME = "one-line";
+   		this.ONE_LINE_NAME = "one-line";
 		this.TWO_LINES_NAME = "two-lines";
 		this.ONE_CURVE_NAME = "one-curve";
 		this.TWO_CURVES_NAME = "two-curves";
@@ -49,6 +49,16 @@ PieceFactory.prototype.createRandomPiece = function(json)
 	var pieceView = new PieceView(json["pieces"][rand]);
 	var path = paths.concat();
 	return new UIPiece(new Piece(path[rand],  paths_names[rand]), new PieceType().NORMAL, pieceView)
+}
+
+/**
+ * Create a random piece using the class UIPiece.
+ * @return a UIPiece
+ */
+PieceFactory.prototype.createBlockPiece = function(json) 
+{
+	var pieceView = new PieceView(json["pieces"][5]);
+	return new UIPiece(new Piece(null,  null), new PieceType().BLOCK, pieceView)
 }
 
 /**

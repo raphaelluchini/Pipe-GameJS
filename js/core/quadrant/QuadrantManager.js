@@ -35,17 +35,17 @@ var QuadrantManager = Class.create({
 	 * @param	heightQuad width of quadrants by Y
 	 * @return Array of quadrants
 	 */
-	newGame: function(xRef, yRef, widthQuad, heightQuad) 
+	newGame: function(map, widthQuad, heightQuad) 
 	{
-			this.quadrantsNumX = xRef;
-			this.quadrantsNumY = yRef;
+			this.quadrantsNumX = map.length;
+			this.quadrantsNumY = map[0].length;
 			
 			this.stageRef = [];
 			var counterId = 0;
-			for (var i = 0; i < xRef; i++) 
+			for (var i = 0; i < this.quadrantsNumX ; i++) 
 			{
 				this.stageRef[i] = [];
-				for (var j = 0; j < yRef; j++) 
+				for (var j = 0; j < this.quadrantsNumY; j++) 
 				{
 					var quad = new Quadrant();
 					var uiQuadrant = new UIQuadrant();

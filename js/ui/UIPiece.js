@@ -3,14 +3,14 @@ var UIPiece = Class.create({
 	 * The constructor method needs the piece x and y for know where the pieces is added
 	 */
   initialize: function(pieceData, type, skinView) {
-  	this.pieceData = pieceData;
+  		this.pieceData = pieceData;
 		this.isDrag;
 		this.isInteractive = false;
 		this.skin;
 		this.pieceType;
 		this.addedOnStage;
 		this.mouseDownSignal = new signals.Signal();
-    this.mouseUpSignal = new signals.Signal();
+    	this.mouseUpSignal = new signals.Signal();
 	
 		this.skin = skinView.view;
 		this.setPieceType(type);
@@ -32,12 +32,12 @@ var UIPiece = Class.create({
 	 * @param	event
 	 */
 	onAddedToStage: function(event) {
-			this.addedOnStage = true;
-			if (this.isInteractive)
-			{
-				this.addInteraction();
-			}
-  },
+		this.addedOnStage = true;
+		if (this.isInteractive)
+		{
+			this.addInteraction();
+		}
+ 	 },
   /**
     * Add the listeners for mouse interactions
     */
@@ -45,32 +45,39 @@ var UIPiece = Class.create({
 		var _this = this;
 			this.skin.onPress = function(eventPress) {
 				var offset = {x:eventPress.target.x-eventPress.stageX, y:eventPress.target.y-eventPress.stageY};
-        eventPress.target.parentObj.mouseDownSignal.dispatch(eventPress.target.parentObj);
-
+      			eventPress.target.parentObj.mouseDownSignal.dispatch(eventPress.target.parentObj);
+      			eventPress.target.scaleX = eventPress.target.scaleY = 1.2;
 				eventPress.onMouseMove = function(eventMove) {
 					eventPress.target.x = eventMove.stageX+offset.x;
 					eventPress.target.y = eventMove.stageY+offset.y;
 				}
 				eventPress.onMouseUp = function(event) {
 					eventPress.target.parentObj.isDrag = false;
-          eventPress.target.parentObj.mouseUpSignal.dispatch();
+          			eventPress.target.parentObj.mouseUpSignal.dispatch();
 					Event.stopObserving(document, 'keypress', getKey);
+					eventPress.target.scaleX = eventPress.target.scaleY = 1;
 			  }
 			  Event.observe(document, 'keypress', getKey);
 			}
-			
-			
-	  	
+
+		this.skin.onMouseOver = function(mouseOver){
+			document.body.style.cursor = "move";
+		}
+
+		this.skin.onMouseOut = function(mouseOut){
+			document.body.style.cursor = "default";
+		}
+
 	  	function getKey(e){ 
-				var code;
-				if (!e) var e = window.event;
-				if (e.keyCode) code = e.keyCode;
-				else if (e.which) code = e.which;
-				var character = String.fromCharCode(code);
-				if(character.toLowerCase() == "r")
-				{
-					_this.onMouseWheel(1)
-				}
+			var code;
+			if (!e) var e = window.event;
+			if (e.keyCode) code = e.keyCode;
+			else if (e.which) code = e.which;
+			var character = String.fromCharCode(code);
+			if(character.toLowerCase() == "r")
+			{
+				_this.onMouseWheel(1)
+			}
 		}
   },
   /**
@@ -141,6 +148,12 @@ var UIPiece = Class.create({
 				this.killInteraction();
 				break;
 			}
+			case new PieceType().BLOCK:
+			{
+				this.pieceData.isNew = false;
+				this.isInteractive = false;
+				break;
+			}
 			default:
 			{
 				this.pieceData.isNew = true;
@@ -203,6 +216,9 @@ var UIPiece = Class.create({
   	if (this.skin)
 		{
 			this.skin.onPress = null;
+			this.skin.onMouseOver = null;
+			this.skin.onMouseOut = null;
+			document.body.style.cursor = "default";
 		}    
   }
 });

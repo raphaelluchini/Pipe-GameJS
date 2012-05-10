@@ -9,17 +9,9 @@ var CoreGameManager = Class.create({
 		this.pieaceTime = 3;
 		this.coreGame = coreGame;
 		this.timer;
-		
+
 		this.quadrantManager;
-		/**
-		 * Reference of initial quadrant for initial piece.
-		 */
-		this.initQuadrant = [2, 2];
 		
-		/**
-		 * Reference of finish quadrant for finish piece.
-		 */
-		this.finishQuadrant = [5, 4];
 		
 		/**
 		 * Current quadrand to verify.
@@ -34,9 +26,8 @@ var CoreGameManager = Class.create({
 	 * Init a especif game
 	 */
   initGame: function() {
-		this.coreGame.createStageQuadrant(10, 10, 40, 40);
-		this.coreGame.createInitPiece(this.initQuadrant[0], this.initQuadrant[1]);
-		this.coreGame.createFinishPiece(this.finishQuadrant[0], this.finishQuadrant[1]);
+		this.coreGame.createStageQuadrant(40, 40);
+		this.coreGame.createDefaultPieces();
 		this.coreGame.createPiece();
 		this.quadrantManager = this.coreGame.quadrantManager;
 		this.initVerification();
@@ -45,7 +36,7 @@ var CoreGameManager = Class.create({
 	 * Inities varifications of pieces
 	 */
   initVerification: function(){
-		this.currentQuad = this.quadrantManager.getQuadrant(this.initQuadrant[0], this.initQuadrant[1]);
+		this.currentQuad = this.quadrantManager.getQuadrant(this.coreGame.initQuadrant[0], this.coreGame.initQuadrant[1]);
 		this.currentQuad.piece.executePiece(-1);
 		var _this = this;
 		this.timer = new PeriodicalExecuter(function(pe){
@@ -99,14 +90,5 @@ var CoreGameManager = Class.create({
 			pe.stop();
 			
 		}, this.pieaceTime);
-		//console.log(this.currentQuad);
   },
-  /**
-	 * This loop used to start and process the game.
-	 * @param	event
-	 */
-  onTimer: function(){
-  	//console.log(this.parent);
-  		
-		}
 });

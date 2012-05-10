@@ -5,6 +5,7 @@
 			{"images": ["img/curveSkin.png"], "frames": {"regY": 0, "height": 41, "regX": 0, "width": 41, "count": 180}, "animations": {"init_1": [0, 89, false], "init_2": [90, 179, false]}},
 			{"images": ["img/twoCurvesSkin.png"], "frames": {"regY": 0, "height": 41, "regX": 0, "width": 41, "count": 369}, "animations": {"init2_2": [278, 368, false], "init2_1": [188, 277, false], "init1_1": [0, 91, false], "init1_2": [92, 187, false]}},
 			{"images": ["img/startSkin.png"], "frames": {"regY": 0, "height": 41, "regX": 0, "width": 41, "count": 93}, "animations": {"init": [0, 92, false]}},
-			{"images": ["img/finishSkin.png"], "frames": {"regY": 0, "height": 41, "regX": 0, "width": 41, "count": 93}, "animations": {"all": [0, 0], "init": [1, 92, false]}}
+			{"images": ["img/finishSkin.png"], "frames": {"regY": 0, "height": 41, "regX": 0, "width": 41, "count": 93}, "animations": {"all": [0, 0], "init": [1, 92, false]}},
+			{"images": ["img/block.jpg"], "frames": {"regY": 0, "height": 41, "regX": 0, "width": 41, "count": 93}, "animations": {"all": [0, 0]}}
 		]
 }

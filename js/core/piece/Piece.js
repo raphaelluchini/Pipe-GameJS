@@ -1,6 +1,6 @@
 var Piece = Class.create({
   initialize: function(path, pathName) {
-   	this.path = path;		
+   		this.path = path;		
 		/**
 		 * The name of type path.
 		 */

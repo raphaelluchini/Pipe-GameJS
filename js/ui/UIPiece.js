@@ -90,7 +90,7 @@ var UIPiece = Class.create({
 				this.pieceData.rotateLeft();
 			else
 				this.pieceData.rotateRight();
-
+			
 			//Pixel Rotation Fix
 			if(this.pieceData.rotationNumber == 3)
 			{

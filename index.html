@@ -54,7 +54,7 @@ function init() {
 
 	canvas = document.getElementById("testCanvas");
 	stage = new Stage(canvas);
-
+	Touch.enable(stage);
 	var imagesLoaded = 0;
 
 	new Ajax.Request('json/skin2.json', {
@@ -66,12 +66,9 @@ function init() {
 			for(var i = 0; i < json["pieces"].length; i++)
 			{
 				img = new Image();
-				img.onload = handleImageLoad;
-				img.src = json["pieces"][i]["images"][0];
-				function handleImageLoad(event) {
+				img.onload = function (event) {
 					if(imagesLoaded == json["pieces"].length-1)
-					{						
-						//Coregame
+					{			
 						stage.enableMouseOver(50);
 						var coreGame = new CoreGame(stage, map, 500, 200, json);
 						var coreGameManager = new CoreGameManager(coreGame);
@@ -82,6 +79,7 @@ function init() {
 					}
 					imagesLoaded++;
 				}
+				img.src = json["pieces"][i]["images"][0];
 			}	
 		}
 	});
@@ -90,7 +88,7 @@ function init() {
 </script>
 </head>
 
-<body onload="init();">
+<body onload="init();" onkeypress="console.log(hello)">
 <div class="description">
 	Use <strong>R</strong> for rotate the piece, and see the console for see the events.Refresh to restart.
 	</div>

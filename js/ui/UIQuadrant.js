@@ -4,7 +4,7 @@ var UIQuadrant = Class.create({
 		this.piece;
 
 		var target = new Shape();
-		target.graphics.beginFill(Graphics.getRGB(255,0,0,.5)).drawRect(0,0,40,40).beginFill("#FFF");
+		target.graphics.beginFill(Graphics.getRGB(115,0,0,1)).drawRect(0,0,40,40).beginFill("#FFF");
 		this.skin = target;
   }
 });
